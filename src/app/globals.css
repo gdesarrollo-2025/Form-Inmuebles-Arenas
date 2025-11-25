@@ -6,18 +6,52 @@
 }
 
 @theme inline {
+  --color-primary: oklch(80.9% 0.105 251.813);
+  --color-secondary: oklch(37.9% 0.146 265.522);
+  --color-text: #000000;
+  --color-error: oklch(80.8% 0.114 19.571);
+  --color-error-text: oklch(63.7% 0.237 25.331);
+  --color-success: oklch(87.1% 0.15 154.449);
+  --color-success-text: oklch(72.3% 0.219 149.579);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+  @utility details-base {
+    @apply border-2 rounded-md border-blue-400 mb-6 open:shadow-md transition-all
   }
-}
+
+  @utility fieldset-base {
+    @apply border-2 border-gray-300 m-3 rounded-xl p-2
+  }
+
+  @utility summary-base {
+    @apply cursor-pointer rounded-sm list-none bg-primary px-3 py-2  border-blue-400 
+  }
+
+  @utility input-base {
+    @apply border border-gray-400 rounded px-2 placeholder:text-gray-500 text-black focus:outline-blue-300
+  }
+
+  @utility label-base {
+    @apply text-gray-500 group-focus-within:text-primary
+  }
+
+  @utility select-base {
+    @apply h-[27px] border border-gray-400 rounded px-2 placeholder:text-gray-500 text-black focus-within:outline-primary
+  }
+
+  @utility radio-base {
+    @apply has-checked:text-primary
+  }
+
+  @utility button-base {
+    @apply bg-primary rounded p-2
+  }
+
 
 body {
   background: var(--background);
