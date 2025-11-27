@@ -3,6 +3,19 @@ export interface Direccion {
     name: string;
 }
 
+export interface Nomenclatura {
+  dir_1: number | "";
+  dir_2: number | "";
+  dir_3: number | "";
+  dir_4: number | "";
+  dir_5: number | "";
+  dir_6: number | "";
+  dir_7: number | "";
+  dir_8: number | "";
+  dir_9: number | "";
+  dir_10: number | "";
+}
+
 export const Direccion_1: Direccion[] = [{
     code: 1,
     name: "Avenida Calle"

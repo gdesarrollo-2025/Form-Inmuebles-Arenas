@@ -1,6 +1,6 @@
 import { Direccion_1, Direccion_2, Direccion_3, Direccion_4 } from "@/constants/tipoDireccion";
 
-import { Nomenclatura } from "@/app/page";
+import { Nomenclatura } from "@/constants/tipoDireccion";
 
 import axios from "axios";
 
@@ -10,10 +10,12 @@ export interface LocatorResult {
 }
 
 export async function getCoords(address: string): Promise<LocatorResult> {
+  console.log(address)
+  console.log(encodeURIComponent(address))
   try {
     const res = await fetch(`/api/nominatim?q=${encodeURIComponent(address)}`);
     const data = await res.json();
-
+    console.log(data)
     if (!Array.isArray(data) || data.length === 0) {
       return { lat: 0, lon: 0 };
     }
