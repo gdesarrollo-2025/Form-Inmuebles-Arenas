@@ -84,7 +84,7 @@ export type InmuebleForm ={
   dir_9: number | "";
   dir_10: number | "";
   //propietario
-  
+  owner: number | "";
 }
 export const initialInmueble: InmuebleForm = {
   city: "",
@@ -133,4 +133,6 @@ export const initialInmueble: InmuebleForm = {
   dir_8: "",
   dir_9: "",
   dir_10: "",
+  //propietario
+  owner: "",
 };

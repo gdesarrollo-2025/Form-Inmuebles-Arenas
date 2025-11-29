@@ -1,9 +1,8 @@
 "use client";
-import Form from "next/form";
 import dynamic from "next/dynamic";
-import { useForm, SubmitHandler, useWatch } from "react-hook-form";
+import { useForm, SubmitHandler, useWatch, FormProvider} from "react-hook-form";
 import { useState, useEffect } from "react";
-import { FaSearch, FaPlus, FaPaperPlane } from "react-icons/fa";
+import {  FaPaperPlane } from "react-icons/fa";
 
 //Todos los types e interfaces
 import { Propiedades } from "@/constants/tipoPropiedad";
@@ -21,6 +20,7 @@ import { Select } from "@/components/Form/Select";
 import { InputPrice, InputNumber, InputText } from "@/components/Form/Input";
 import { Radio } from "@/components/Form/Radio";
 import FormAlert from "@/components/Form/FormAlert";
+import PropietariosField from "@/components/Form/PropietariosField";
 
 //Todas las constantes
 import { Departamentos } from "@/constants/tipoDepartamento";
@@ -33,9 +33,12 @@ import { TextArea } from "@/components/Form/TextArea";
 const Map = dynamic(() => import("@/components/Form/Map"), { ssr: false });
 
 export default function Home() {
+  const methods = useForm()
   const { control, handleSubmit, watch, setValue, formState: { errors } } = useForm<InmuebleForm>({
     defaultValues: initialInmueble
   });
+
+  const {register, reset} = methods;
 
   const [alert, setAlert] = useState<{
     show: boolean;
@@ -59,7 +62,7 @@ export default function Home() {
   const city = useWatch({ control, name: "city" });
 
   //variables para saber los valores de la direccion
-  const [d1,d2,d3,d4,d5,d6,d7,d8,d9,d10] = useWatch({
+  const [d1, d2, d3, d4, d5, d6, d7, d8, d9, d10] = useWatch({
     control, name: [
       "dir_1", "dir_2", "dir_3", "dir_4", "dir_5",
       "dir_6", "dir_7", "dir_8", "dir_9", "dir_10",
@@ -68,10 +71,10 @@ export default function Home() {
 
   //variables para saber el valor de latitude y longitude
   const lat = useWatch({ control, name: "latitude" });
-  const lon =  useWatch({ control, name: "longitude" });
+  const lon = useWatch({ control, name: "longitude" });
 
   //variable para saber el valor de address 
-  const address =  useWatch({ control, name: "address" });
+  const address = useWatch({ control, name: "address" });
 
   //Funcion para mandar los elementos a Domus y luego Hubspot
   const onSubmit = (data: InmuebleForm) => {
@@ -170,7 +173,7 @@ export default function Home() {
   }, [alert.show]);
 
   return (
-    <div>
+    <div className="w-full">
       <form onSubmit={handleSubmit(onSubmit, onError)} className="p-3">
         {/* Maneja los errores globales */}
         {alert.show && (
@@ -209,17 +212,9 @@ export default function Home() {
             <FormField control={control} name="private_area" label="Area privada M²" rules={{ required: "Este campo es obligatorio:", max: { value: 4000, message: "Introduce un valor menor o igual a 4000" } }} component={InputNumber} componentProps={{ step: "0.01" }} />
           </fieldset>
           {/* Propietarios */}
-          <fieldset className="fieldset-base">
+          <fieldset className="fieldset-base flex flex-col gap-2">
             <legend className="text-gray-500 px-2">Propietarios</legend>
-            <div className="flex gap-2">
-              <input className="input-base" type="text" />
-              <input className="input-base" type="text" />
-              <div className="flex flex-col relative ">
-                <button type="button" className="button-base rounded-full order-2 peer"><FaPlus /></button>
-                <p className="absolute p-2 gap-4 -top-10 -left-30  w-40 text-sm rounded-full order-1 transition-all ease-in duration-100 hidden text-blue-400 bg-blue-100 border-2 border-blue-200 opacity-0 peer-hover:opacity-100 peer-hover:block">Agregar Propietario</p>
-              </div>
-
-            </div>
+            <PropietariosField/>
           </fieldset>
           {/* Valores */}
           <fieldset className="fieldset-base flex flex-col md:flex-row gap-3">
@@ -281,7 +276,7 @@ export default function Home() {
               </div>
               {/* Via complementaria */}
               <div className="flex flex-col justify-between">
-                <label className="label-base"># Via Complemento</label>
+                <label className="label-base">- Via Complemento</label>
                 <div className="grid grid-cols-2 gap-1">
                   <FormField control={control} name="dir_9" label="Numero" component={InputNumber} />
                   <FormField control={control} name="dir_10" label="Orientación" placeholder="Orientación..." component={Select} options={Direccion_4} />
