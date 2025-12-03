@@ -16,9 +16,9 @@ export default function Layout({
 
     return (
         <div>
-            <Header />
-            <div className="relative flex h-screen">
-                <SideBar />
+            <Header toggleMenu={toggleMenu}/>
+            <div className=" pt-22 relative flex h-full">
+                <SideBar menu={menu}/>
                 {children}
             </div>
         </div>

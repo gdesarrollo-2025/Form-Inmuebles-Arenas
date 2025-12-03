@@ -145,7 +145,7 @@ export function InputText({
     <div className="flex flex-col group ">
       <label className="label-base">{label}</label>
       <input
-        className={`border border-gray-400 rounded px-2 placeholder:text-gray-500 text-black focus:outline-blue-300 ${classname}`}
+        className={`border border-gray-400 rounded px-2 placeholder:text-gray-500 text-black focus:outline-terciary ${classname}`}
         ref={ref}
         name={name}
         value={value}

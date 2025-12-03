@@ -65,7 +65,6 @@ export type InmuebleForm ={
   comment: string;
   comment_2: string;
   status: number | "";
-  promoter_broker: number | "";
   catcher_broker: number | "";
   amenities: Amenidad[];
   rental_premise_value?: number | "";
@@ -115,7 +114,6 @@ export const initialInmueble: InmuebleForm = {
   comment: "",
   comment_2: "",
   status: 1, 
-  promoter_broker: "",
   catcher_broker: "",
   amenities: [],
   rental_premise_value: "",

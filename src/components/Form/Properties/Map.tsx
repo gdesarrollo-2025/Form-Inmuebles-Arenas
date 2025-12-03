@@ -48,7 +48,6 @@ function DraggableMarker({ lat, lon, onMove }: DraggableMarkerProps) {
   const markerRef = useRef<LeafletMarker | null>(null);
 
   useEffect(() => {
-    console.log(position)
     setPosition([lat, lon]);
     if (markerRef.current) {
       markerRef.current.setLatLng([lat, lon]);

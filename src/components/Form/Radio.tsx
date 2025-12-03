@@ -29,7 +29,11 @@ export function Radio({
                     const label = typeof op === "string" ? op : op.name ?? op.code
                     return (
                         <div key={value} className="radio-base">
-                            <input type="radio" name={name} value={value} onChange={(e) => onChange( Number(e.target.value))} /> <label>{label}</label>
+                            <label className="flex items-center gap-1">
+                                <input type="radio" name={name} value={value} onChange={(e) => onChange(Number(e.target.value))}
+                                    className="appearance-none size-4 border border-secondary rounded-full transition-all ease-in duration-100 checked:border-8 checked:border-primary align-middle" />
+                                <span className="text-wrap">{String(label).replace("/"," / ")}</span>
+                            </label>
                         </div>
                     )
                 }

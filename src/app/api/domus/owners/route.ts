@@ -7,7 +7,7 @@ export async function GET(req: Request) {
     try {
         const { searchParams } = new URL(req.url);
         const document = searchParams.get("document");
-        console.log(document)
+        console.log("Received document:", document);
         if (!document) {
             return NextResponse.json(
                 { error: "Missing document parameter" },
@@ -17,7 +17,6 @@ export async function GET(req: Request) {
 
         // Crear URL con el parámetro
         const url = `${DOMUS_URL}?document=${document}`;
-        console.log(DOMUS_TOKEN)
         console.log(url)
         const response = await fetch(url, {
             method: "GET",
