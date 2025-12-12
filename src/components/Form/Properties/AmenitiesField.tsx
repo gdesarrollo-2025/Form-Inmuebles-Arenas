@@ -14,8 +14,8 @@ export default function AmenitiesField() {
     const type = useWatch({ control, name: "type" });
     useEffect(() => {
         const fetchAmenities = async () => {
-            const data = await getAmenities(type);
-            setAmenities(data)
+            /* const data = await getAmenities(type);
+            setAmenities(data) */
         }
         fetchAmenities();
     }, [type])

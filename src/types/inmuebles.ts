@@ -22,6 +22,7 @@ export type Inmueble = {
     bedrooms?: number,
     parking?: number,
     parking_covered?: number,
+    branch?: number,
     rent?: number,
     saleprice?: number,
     administration?: number,
@@ -57,6 +58,7 @@ export type InmuebleForm ={
   bedrooms: number | "";
   parking: number | "";
   parking_covered: number | "";
+  branch: number | "";
   rent: number | "";
   saleprice: number | "";
   administration: number | "";
@@ -106,6 +108,7 @@ export const initialInmueble: InmuebleForm = {
   bedrooms: "",
   parking: "",
   parking_covered: "",
+  branch: "",
   rent: "",
   saleprice: "",
   administration: "",

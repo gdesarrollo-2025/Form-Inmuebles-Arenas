@@ -1,8 +1,11 @@
-import { SearchableSelect } from "@/components/Form/Select"
-export default function OwnersPage(){
+"use client";
+
+import FormOwners from "@/components/Form/Owners/FormOwners";
+
+export default function OwnersPage() {
     return(
-        <div>
-            Hola
+        <div className="w-full">
+            <FormOwners/>
         </div>
-    )
+    )    
 }

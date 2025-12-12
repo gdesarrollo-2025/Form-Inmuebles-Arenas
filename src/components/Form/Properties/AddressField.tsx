@@ -13,9 +13,9 @@ import { LocatorResult } from "@/lib/locator";
 import { Nomenclatura } from "@/constants/tipoDireccion";
 
 import { getCoords, getAddress } from "@/lib/locator";
-import { StateAlert } from "@/app/page";
+import { StateAlert } from "@/components/Form/FormAlert";
 
-const Map = dynamic(() => import("@/components/Form/Properties/Map"), { ssr: false });
+const Map = dynamic(() => import("@/components/Form/Map"), { ssr: false });
 
 export default function AddressField({ Direccion_1, Direccion_2, Direccion_3, Direccion_4, Ciudades, setAlert }: { Direccion_1: Direccion[], Direccion_2: Direccion[], Direccion_3: Direccion[], Direccion_4: Direccion[], Ciudades: Ciudad[], setAlert: React.Dispatch<React.SetStateAction<StateAlert>> }) {
     const { control, setValue } = useFormContext();

@@ -89,7 +89,7 @@ export function SearchableSelect({ value, label, placeholder, options, onChange 
             <CommandInput placeholder="Seleccione una opción" />
             <CommandEmpty>No se encontraron resultados</CommandEmpty>
             <CommandList>
-              <CommandGroup heading="Opciones">
+              <CommandGroup >
                 {options.map((option, idx) => (
                   <CommandItem
                     key={idx}

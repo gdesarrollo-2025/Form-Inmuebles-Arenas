@@ -30,7 +30,7 @@ import { Barrios } from "@/constants/tipoBarrio";
 import { Direccion_1, Direccion_2, Direccion_3, Direccion_4, Nomenclatura } from "@/constants/tipoDireccion";
 import { TextArea } from "@/components/Form/TextArea";
 
-const Map = dynamic(() => import("@/components/Form/Properties/Map"), { ssr: false });
+const Map = dynamic(() => import("@/components/Form/Map"), { ssr: false });
 
 export default function Home() {
   const { control, handleSubmit, watch, setValue, formState: { errors } } = useForm<InmuebleForm>({

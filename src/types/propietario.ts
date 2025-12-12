@@ -1,32 +1,51 @@
 export const Documentos = [
     {
         code: 1,
-        name:"C.C."
+        name: "Cedula"
     },
     {
         code: 5,
-        nmae:"Nit"
+        name: "Nit"
     }
 ]
 
-interface TelefonoDomus{
-    type:number;
-    tel_number: number;
+export const Telefonos = [
+    {
+        code: 1,
+        name: "Casa"
+    },
+    {
+        code: 2,
+        name: "Oficina"
+    },
+    {
+        code: 5,
+        name: "Otro"
+    }
+]
+
+export interface TelefonoDomus {
+    type: number|"";
+    phone: number|"";
 }
-interface Propiedad {
+
+export interface Propiedad {
     code: number;
     share_percentage: number;
 }
 
 export interface Propietario {
-    code?:number;
+    code?: number;
     name: string;
     last_name: string;
     document_type: number;
     document: number;
-    email:string;
-    phone:string[];
+    email: string;
+    phones: TelefonoDomus[];
     city?: number;
+    neighborhood?: string;
+    broker?: number;
+    branch?: number;
     properties?: Propiedad[];
 }
 
@@ -35,8 +54,29 @@ export interface PropietarioForm {
     code: number | "";
     name: string;
     last_name: string;
+    document_type: number | "";
     document: number | "";
     email: string;
+    phones: TelefonoDomus[];
     city: number | "";
-    properties: Propiedad[]
+    neighborhood: string;
+    broker: number | "";
+    branch: number | "";
+    properties: Propiedad[];
+    
+}
+
+export const InitialPropietario: PropietarioForm = {
+    code: "",
+    name: "",
+    last_name: "",
+    document_type: "",
+    document: "",
+    email: "",
+    city: "",
+    neighborhood: "",
+    broker:"",
+    branch:"",
+    properties: [],
+    phones: [{type:"", phone:""}]
 }

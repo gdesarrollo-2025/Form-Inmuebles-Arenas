@@ -1,6 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useForm, SubmitHandler, useWatch, FormProvider } from "react-hook-form";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { FaPaperPlane } from "react-icons/fa";
 
@@ -10,12 +10,10 @@ import { Negocios } from "@/constants/tipoNegocio";
 import { Destinaciones } from "@/constants/tipoDestinacion";
 import { Estratos } from "@/constants/tipoEstrato";
 import { initialInmueble, InmuebleForm } from "@/types/inmuebles";
-
-//Todos las funciones y types auxiliares
-import { getCoords, LocatorResult, getAddress } from "@/lib/locator";
+import { StateAlert } from "@/components/Form/FormAlert";
 
 //Todos los Componentes creados
-import FormAlert from "@/components/Form/FormAlert";
+import GlobalAlert from "@/components/Form/FormAlert";
 import PropietariosField from "@/components/Form/Properties/PropietariosField";
 import AdministrativoField from "@/components/Form/Properties/AdministrativoField";
 import BaseDescriptionField from "@/components/Form/Properties/BaseDescriptionField";
@@ -32,15 +30,7 @@ import { Barrios } from "@/constants/tipoBarrio";
 import { Direccion_1, Direccion_2, Direccion_3, Direccion_4 } from "@/constants/tipoDireccion";
 import AmenitiesField from "@/components/Form/Properties/AmenitiesField";
 
-export interface StateAlert {
-  show: boolean;
-  destructive?: boolean;
-  title: string;
-  description: string;
-  fadeOut?: boolean;
-}
-
-const Map = dynamic(() => import("@/components/Form/Properties/Map"), { ssr: false });
+const Map = dynamic(() => import("@/components/Form/Map"), { ssr: false });
 
 export default function Home() {
   const methods = useForm<InmuebleForm>({
@@ -71,40 +61,12 @@ export default function Home() {
     });
   };
 
-  //Se utiliza para quitar los errores de tal manera que la notificacion desaparezca
-  useEffect(() => {
-    if (alert.show) {
-      // Iniciar fade OUT después de 2.5s
-      const fadeTimer = setTimeout(() => {
-        setAlert((prev) => ({ ...prev, fadeOut: true }));
-      }, 2500);
-
-      // Ocultar totalmente después de 3s
-      const hideTimer = setTimeout(() => {
-        setAlert((prev) => ({ ...prev, show: false, fadeOut: false }));
-      }, 3000);
-
-      return () => {
-        clearTimeout(fadeTimer); clearTimeout(hideTimer);
-      };
-    }
-  }, [alert.show]);
-
-  //
-  
   return (
     <div className="w-full">
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit, onError)} className="p-3">
           {/* Maneja los errores globales */}
-          {alert.show && (
-            <div className={`fixed top-1 -right-20 z-30 transition-all ease-in duration-500 ${alert.fadeOut ? "opacity-0 -right-20" : "opacity-100 right-1"}`}>
-              <FormAlert
-                destructive={alert.destructive}
-                title={alert.title}
-                description={alert.description}
-              />
-            </div>)}
+          <GlobalAlert alert={alert}  setAlert={setAlert}/>
           {/* Informacion Basica */}
           <details className="details-base">
             <summary className="summary-base">Informacion Basica</summary>
@@ -113,7 +75,7 @@ export default function Home() {
             {/* Descripcion base */}
             <BaseDescriptionField Estratos={Estratos} />
             {/* Propietarios */}
-            <PropietariosField />
+            <PropietariosField setAlert={setAlert}/>
             {/* Valores */}
             <ValoresField />
             {/* Descripcion y Comentarios */}

@@ -6,8 +6,6 @@ import { InputNumber} from "@/components/Form/Input";
 
 import { Estrato } from "@/constants/tipoEstrato";
 
-import { Estratos } from "@/constants/tipoEstrato";
-
 export default function BaseDescriptionField({Estratos}: {Estratos: Estrato[]}) {
     const { control } = useFormContext();
     return (

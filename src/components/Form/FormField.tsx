@@ -1,5 +1,6 @@
+"use client"
 import { Controller, Control, FieldValues, Path, RegisterOptions } from "react-hook-form";
-import FormAlert from "./FormAlert";
+
 
 interface RHFFieldProps<T extends FieldValues, K extends Path<T>> {
     control: Control<T>;
